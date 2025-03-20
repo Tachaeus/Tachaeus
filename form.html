@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <tiltle>Form</tiltle>
+</head>
+<body>
+<form action="" method="" >
+    <fieldset>
+        <label for="fname">First Name:</label>
+        <input type="text" id="=fname" name="fname" placeholder="First Name" required><br><br>
+
+        <label for="lname">Last Name:</label>
+        <input type="text" id="=lname" name="lname" placeholder="Last Name" required><br><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="=dob" name="dob" placeholder="dob" required><br><br>
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="=email" name="email" placeholder="Email Address" required><br><br>
+
+        <label for="phone">Phone Number:</label>
+        <input type="number" id="=phone" name="phone" placeholder="phone"><br><br>
+
+        <label>Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male:</label><br>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female:</label><br>
+    </fieldset>
+
+    <fieldset>
+        <legend>Enrollment Details</legend>
+        <label for="course">Course of Study</label>
+        <select id="course" name="course" required>
+           <option value="">Select Course</option>
+           <option value="cs">Computer Science</option>
+           <option value="ee">Electrical Engineering</option>
+           <option value="ba">Business Administration</option>
+           <option value="ma">Mathematics</option>
+        </select><br><br>
+
+    <label for="year">Year of Study:</label>
+        <input type="number" id="=year" name="year" placeholder="year of study" required><br><br>
+
+    <label for="startdate">Start Date:</label>
+        <input type="date" id="=startdate" name="startdate" placeholder="Start Date" required min="1" max="4"><br><br>
+   
+    <label for="comments">Comments</label><br>
+    <textarea id="comments" name="comments" rows="10" cols="50" placeholder="Add any comments"></textarea><br><br>
+
+    <label for="file">Upload ID:</label>
+    <input type="file" id="=file" name="file" accept="image/*,.pdf"><br><br>
+    </fieldset>
+
+    <button type="submit">Register</button>
+    <button type="reset">Clear Page</button>
+</form>
+</body>
+</html>
