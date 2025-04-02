@@ -1,0 +1,81 @@
+/* Element Styling */
+body{
+border: 4px;
+margin: 0 auto;
+line-height: 1.5;
+max-width: 650px;
+align-items: right;
+background-color: #b49f9f;
+}
+
+p{
+    text-wrap: 10mm;
+    grid-template-columns: auto;
+}
+
+
+/* Class Styling */
+.legend {
+    align-items: center;
+    text-align: center;
+}
+
+.box {
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    align-content: space-around;
+    margin: 4px;
+    padding: 2px;
+    grid-template-columns: max-content;
+}
+
+.box:hover {
+transform: translate3d(10px);
+}
+
+/* Link Styling */
+a {
+    text-decoration: underline;
+    transition: color 0.5s ease;
+    }
+
+a:hover {
+color: red;
+}
+
+/* ID Styling */
+#heading {
+        font-style: italic;
+        align-items: left;
+        color: #008;
+        display: block;
+}
+
+#submit {
+border: 2px;
+background-color: #5cf063;
+border-radius: 5%;
+height: auto;
+width: auto;
+}
+
+#prime {
+    background-color: #000000;
+    color: #fff;
+    border-radius: 1%;
+    border-color: #000000;
+}
+
+#a {
+    background-color: #808080;
+    border-color: #000000;
+    border-radius: 2%;
+    margin-bottom:2px
+}
+
+#b {
+    background-color: #808080;
+    border-color: #000000;
+    border-radius: 2%;
+}

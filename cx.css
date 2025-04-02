@@ -1,0 +1,91 @@
+/* Element Selector*/
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: medium;
+    color: white;
+    background-color: #333;
+    max-width: 500px;
+    margin: auto;
+    padding: 10px;
+}
+
+h1 {
+    background-color: indigo;
+    font-size: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #fff;
+    align-items: center;
+    text-decoration: solid;
+}
+
+h2 {
+    color: #007b;
+    text-decoration: solid;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h3 {
+    text-decoration: overline;
+    color: #00ffff;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.about-author {
+    flex-wrap: wrap;
+    align-content: center;
+}
+nav {
+    position: sticky;
+}
+
+/* Link Styling */
+a {
+    color: #007bff;
+    text-decoration: dotted;
+    transition: color 0.5s ease;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.books {
+    padding: 20px;
+    border-radius: 5%;
+    background-color: #808080;
+}
+
+.books li {
+    padding: 10px;
+    border-left: 4px red;
+    transition: 0.7s;
+}
+
+.books li:hover {               
+    background-color: #007b;
+    color: white;
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    border-radius: 5%;
+    transform: translateX(10px);
+}
+
+li[class$="y"] {
+    color: #272;
+
+}
+
+li[class~="x"] {
+    color: #007b;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px
+    }
+    .books li {
+        flex-direction: column;
+        align-items: left;
+    }
+}

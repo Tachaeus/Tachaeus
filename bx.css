@@ -1,0 +1,98 @@
+/* Element Styling */
+body {
+color: #fff;
+margin: 0 auto;
+padding: 8px;
+background-color: #150939;
+line-height: 1.6;
+justify-content: center;
+width: auto;
+border: 1px solid rgb(255, 255, 5);
+border-radius: 1%;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    padding: 4px;
+    align-content: center;
+}
+
+nav {
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+img {
+    padding: 5px;
+    width: 500px;
+    height: 400px;
+}
+
+footer li {
+    list-style: none;
+    display: flex;
+}
+
+/* Class Styling */
+.menu li {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2px;
+    border: 1px solid #fff;
+    border-radius: 5%;
+}
+
+.thespian {
+color: #ffd700;
+display: flex;
+align-self: center;
+}
+
+.g {
+    display: inline;
+}
+
+/* ID Styling */
+#bm {
+    padding: 10px;
+    border: 1px solid rgb(155, 155, 224);
+    border-radius: 2%;
+    width: 350px;
+}
+
+/* Link Styling */
+a {
+    text-decoration: none;
+    color: #ffd700;
+    padding: 2px;
+    list-style-position: inside;
+}
+
+a:hover {
+color:#39dd6d;
+transition: 4px 0.9s ease;
+}
+
+a button {
+    color: #ffd700;
+    background-color: #150939;
+}
+
+/* Button Styling */
+#send {
+    display: block;
+    align-content: end;
+    background-color: #150939;
+    color: #ffd700;
+}
+
+@media (max-width: 480px) and (min-width: 300px) {
+    body {
+        padding: 10px;
+    }
+}
