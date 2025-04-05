@@ -1,0 +1,45 @@
+body {
+  margin: 0 auto;
+  padding: 0;
+  background-image: -moz-element(pattern);
+  margin: 0px 20px 0px 20px;
+  line-height: 1.6;
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+article {
+  display: flex;
+  flex-direction: row;
+}
+
+.statements {
+  display: flex;
+  flex-direction: column;
+}
+
+.further-info {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-evenly;
+}
+
+.further-info img {
+  padding: 4px;
+  margin: 4px;
+}
+
+.red-panda {
+  padding: 0%;
+  margin: auto;
+}
+
+@media (max-width: 300px) {
+  body {
+    line-height: 1.6;
+    max-width: 300px;
+    min-width: 280px;
+  }
+}
+ 
