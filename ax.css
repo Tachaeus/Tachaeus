@@ -23,15 +23,18 @@ p{
 .box {
     display: flex;
     position: fixed;
-    justify-content: space-between;
+    align-items: center;
     align-content: space-around;
+    justify-content: space-around;
     margin: 4px;
     padding: 2px;
-    grid-template-columns: max-content;
 }
 
-.box:hover {
-transform: translate3d(10px);
+.box img {
+    image-rendering: pixelated;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
 }
 
 /* Link Styling */
@@ -78,4 +81,9 @@ width: auto;
     background-color: #808080;
     border-color: #000000;
     border-radius: 2%;
+}
+
+#submit:hover {
+    transform: translateX(10px 0px 10px 0px);
+    background-color: #4cf322;
 }

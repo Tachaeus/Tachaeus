@@ -9,7 +9,8 @@
 <body> 
 <header>
 <nav class="box">
-<img href="c:\Users\tachaeus\Pictures\Saved Pictures\Saved Pictures\Covered.jpg" alt="logo"></img> <h1 id="heading">Scriptor</h1> 
+<img href="c:\Users\tachaeus\Pictures\Saved Pictures\Lax\Caspian-logo.jpeg" aria-setsize="100%"></img>
+<h1 id="heading">Scriptor</h1> 
 </nav><br><br>
 <p>This is an organizaton dedicated to the betterment empowerment of aspiring and prideful authors.<br> To sample some of our content and begin partaking, register now!</p> 
 </header>
@@ -17,6 +18,7 @@
   <form action="" method="">      
     <legend class="legend">Personal info:</legend>
     <fieldset id="prime">
+
     <fieldset id="a">
         <label for="name">Name:</label>    
           <input type="name" id="name" placeholder="Enter Name"><br><br>
@@ -28,19 +30,22 @@
         <label for="female">Female</label>
           <input type="radio" id="female" name="gender" value="female"><br><br>
         <label for="age">Age</label>
-          <input type="number" id="age" name="age" placeholder="your age, please..."><br><br>
+          <input type="number" aria-valuemin="5" valuemax="105" id="age" name="age" placeholder="Your age, please..."><br><br>
     </fieldset>
-    <fieldset id="b">      
-        <label>I am interested in:</label><br>
-        <label for="Novels">Novels</label>
-          <input type="radio" id="Novels" name="interests" value="Novels"><br>
-      <label for="Poems">Poems</label>
-          <input type="radio" id="Poems" name="interests" value="Poems"><br>
-        <label for="Short stories">Short stories</label>
-          <input type="radio" id="Short stories" name="interests" value="Short stories"><br>
-    </fieldset>    
+
+    <fieldset id="b">
+      <label>I am interested in:</label><br>
+      <select name="books" id="books">
+        <option></option>
+        <option>Novels</option>
+        <option>Short Stories</option>
+        <option>Poetry</option>
+        <option>Comics</option>
+      </select>
     </fieldset>
-          <input type="submit" id="submit" value="Register">
+
+  </fieldset>
+               <button type="submit" id="submit" value="Register">Register</button>
   </form>
 </main>
 </body>

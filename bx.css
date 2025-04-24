@@ -22,7 +22,7 @@ main {
 nav {
     display: flex;
     align-content: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 img {
@@ -37,9 +37,18 @@ footer li {
 }
 
 /* Class Styling */
+.menuBtn {
+    background-color: #150939;
+    border: 1px solid #150939;
+    color: #ffffff;
+    font-size: x-large;
+}
+
 .menu li {
-    list-style: none;
     display: flex;
+    flex-direction: row;     
+    list-style: none;
+    align-content: space-around;
     justify-content: space-around;
     align-items: center;
     padding: 2px;
@@ -57,12 +66,20 @@ align-self: center;
     display: inline;
 }
 
+textarea::before {
+    content: "I would like to ";
+}
+
 /* ID Styling */
 #bm {
     padding: 10px;
     border: 1px solid rgb(155, 155, 224);
     border-radius: 2%;
     width: 350px;
+}
+
+#name {
+    text-align: center;
 }
 
 /* Link Styling */

@@ -1,13 +1,15 @@
+//Demo: Spread-operator
 function sum(...args) {
 let sum = 0;
 for (let arg of args) sum += arg;
 return sum;
 }
+
 let x = sum(2, 12, 15, 23, 42, 36, 77, 98, 85);
 
 console.log(x);
 
-
+//Maps
 const fruits = new Map([
     ["peach", 20],
     ["avocado", 30],
@@ -25,6 +27,7 @@ console.log(fruits);
  }
 console.log(double(6.2));
 
+
 //What's in the box
 function buildCrate() {
     let contents = "grapes";
@@ -38,26 +41,17 @@ const theCrate = buildCrate();
 theCrate();
 theCrate();
 
-//Issues
-function friendArrival(message) {
-    console.log("Friend is on the way...");
-    setTimeout(() => {
-    message("Get ready!")
-}, 0);
-}
-function phone(chimes) {
-    console.log("Message:", chimes);
-}
-friendArrival(phone);
 
-//Set
+//Sets
 const sentence = new Set();
-sentence.add("This ");
-sentence.add("is ");
-sentence.add("really ");
-sentence.add("something ");
-sentence.add(",huh!");
+sentence.add('This');
+sentence.add('is');
+sentence.add('really');
+sentence.add('something');
+sentence.add('huh!');
+
 console.log(sentence);
+
 
 //Demonstrating array prototypes
 const numbersCount = [
@@ -82,3 +76,15 @@ const sumOfCount = numbersCount
 
 console.log(sumOfCount)
 
+
+//Arrival
+function friendArrival(message) {
+    console.log("Friend is on the way...");
+    setTimeout(() => {
+    message("Get ready!")
+}, 0);
+}
+function phone(chimes) {
+    console.log("Message:", chimes);
+}
+friendArrival(phone);

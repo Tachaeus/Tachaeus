@@ -1,9 +1,10 @@
 //Date increment
-function incDate(Date) {
+function nextDate() {
     return Date.setDate(Date.getDate() + 1);
 }
-const date = new Date();
-console.log(date);
+const tomorrow = new Intl.DateTimeFormat("en-Uk", {dateStyle: "long"});
+console.log(tomorrow.format(nextDate.Date));
+
 
 //Class
 class worker {
@@ -24,8 +25,10 @@ class worker {
 const celine = new worker("Celine Shyre", 2, "an intern");
 celine.introduceSelf();
 
+
 //Class extensions
 class workerLogs extends worker {
+
     constructor(fullName) {
         super(fullName);
     }
@@ -42,23 +45,3 @@ class workerLogs extends worker {
 const flourence = new workerLogs("Flourence Wakefeild");
 flourence.introduceSelf();
 flourence.extraHours("I've clocked");
-
-//Currency format
-const price = Intl.NumberFormat("en-UK", {
-    style: "currency",
-    currency: "EUR",
-}
-);
-let tax = 15.20
-console.log(price.format(49.99 - tax));
-
-
-
-const ppl = [ Dennis = "male", Cliden = "intersex", Sophia = "female"];
-
-
-if (ppl === "male" || ppl === "female") {
-    console.log(name, "You have a green light!");
-} else {
-    console.log("STEP!!!");
-}

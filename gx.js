@@ -52,8 +52,8 @@
 {
     var statement = "I want to eat your pancreas!";
     let area = statement.substring(19, 28);
-    let altered = area.toUpperCase();
-    let second = area.replace("!", " ANYONE!?!?");
+    let second = area.replace("!", " anyone!?!?");
+    let altered = second.toLocaleUpperCase();
 
-    console.log(altered, second);
+    console.log(altered);
 }
