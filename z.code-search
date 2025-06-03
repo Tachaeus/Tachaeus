@@ -1,0 +1,50 @@
+# Query: NP
+
+37 results - 6 files
+
+bx.py:
+   1:                                      #Accepting user input
+   2: #Basic user-input
+   3: name = input("Enter your name: ")
+   4: age = int(input("Enter rour age: "))
+  11: radius = float(input(f"Enter circle radius: "))
+  19: item = input(f"I would like to purchase: ")
+  20: price = float(input(f"The one that is: "))
+  21: quantity = float(input(f"How many/much would you like? "))
+
+cx.py:
+  33: x = float(input("Input side 'a': "))
+  34: y = float(input("Input side 'b': "))
+
+dx.py:
+   3: age = int(input("Give your age: "))
+  13: order = input("Would you like sth to eat? (Y/N)")
+  26: weight = float(input("How much do you weigh? "))
+  27: unit = input("American or English? (K/L)")
+
+ex.py:
+   4: name2 = input("Enter your name: ")
+  29: #Input Validation
+  30: name = input("Enter your name: ")
+  57: email = input("Enter your e-mail: ")
+
+fx.py:
+    4: name = input("Enter your name: ")
+    8:     name = input("Enter your name: ")
+   14: age = int(input("Enter your age: "))
+   18:     age = int(input("Enter your age: "))
+   24: enter = input("Enter random data: ")
+   28:     enter = input("Enter random data (or 'exit' to leave): ")
+   34: num = int(input("Enter your ID no.: "))
+   38:     num = int(input("Enter your ID no.: "))
+   48:     invest = float(input("How much would you like to invest? "))
+   51:         invest = float(input("How much would you like to investment? "))
+   56:     period = float(input("For how long? "))
+   59:         period = float(input("For how long? "))
+   63: prompt = input(f"Are you certain you wish to invest {invest} for {period} yrs? (Y/N) ")
+  105: rows = int(input("How many rows? "))
+  106: columns = int(input("How many columns? "))
+  107: character = input("Which character do we use? ")
+
+gx.py:
+  4: snooze = int(input("How many sec would you like to snooze? "))
