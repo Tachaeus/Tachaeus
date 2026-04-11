@@ -1,16 +1,964 @@
-<!DOCTYPE html>
+ 
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link href="styles.css" rel="stylesheet"/>
-    <title>Box Model</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sample Business Plan — Generate PDF</title>
+  <meta name="description" content="A polished sample business plan with one-click PDF export (client-side). No external images. Production-grade layout & typography." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300,400,600,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0c1115;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --stroke: rgba(255,255,255,.14);
+      --stroke2: rgba(255,255,255,.2);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --faint: rgba(255,255,255,.56);
+      --accent: #c7ff7a;
+      --accent2: #74d3ff;
+      --danger: #ff5b7a;
+
+      --shadow: 0 24px 70px rgba(0,0,0,.55);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+
+      --r-sm: 14px;
+      --r-md: 18px;
+      --r-lg: 26px;
+
+      --max: 1120px;
+    }
+
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1100px 650px at 18% 10%, rgba(116, 211, 255, .18), transparent 55%),
+        radial-gradient(900px 600px at 82% 20%, rgba(199, 255, 122, .16), transparent 52%),
+        radial-gradient(900px 600px at 55% 85%, rgba(255, 91, 122, .12), transparent 60%),
+        linear-gradient(180deg, #0b1014, #070a0d 70%, #050608);
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none }
+    .skip{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip:focus{
+      left:12px; top:12px; width:auto; height:auto; padding:10px 12px;
+      background:rgba(0,0,0,.7); border:1px solid var(--stroke); border-radius:12px; z-index:9999;
+    }
+
+    /* Subtle grid texture */
+    .texture{
+      position:fixed; inset:0; pointer-events:none; opacity:.22; mix-blend-mode:screen;
+      background:
+        linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 68px 68px;
+      mask-image: radial-gradient(ellipse at 50% 15%, #000 0 55%, transparent 78%);
+    }
+
+    header{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(7,10,13,.78), rgba(7,10,13,.35));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 210px;
+    }
+    .mark{
+      width: 40px; height: 40px; border-radius: 14px;
+      background:
+        radial-gradient(16px 16px at 30% 35%, rgba(199,255,122,.95), rgba(199,255,122,0) 65%),
+        radial-gradient(18px 18px at 70% 30%, rgba(116,211,255,.95), rgba(116,211,255,0) 65%),
+        radial-gradient(22px 22px at 55% 75%, rgba(255,91,122,.85), rgba(255,91,122,0) 70%),
+        linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 18px 40px rgba(0,0,0,.45);
+    }
+    .brand h1{
+      margin:0;
+      font-family: Fraunces, serif;
+      font-size: 16px;
+      letter-spacing: .2px;
+      font-weight: 650;
+      line-height: 1.05;
+    }
+    .brand p{
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .actions{
+      display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+
+    .chip{
+      display:flex; align-items:center; gap:8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow2);
+    }
+    .chip label{
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .chip input{
+      width: 140px;
+      max-width: 42vw;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      outline:none;
+      font-size: 12px;
+    }
+    .chip input:focus{
+      border-color: rgba(199,255,122,.45);
+      box-shadow: 0 0 0 4px rgba(199,255,122,.12);
+    }
+
+    .btn{
+      appearance:none;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-weight: 650;
+      font-size: 12px;
+      letter-spacing: .2px;
+      display:inline-flex; align-items:center; gap:10px;
+      cursor:pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+      user-select:none;
+      box-shadow: 0 14px 40px rgba(0,0,0,.28);
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.26);
+      background: rgba(255,255,255,.09);
+    }
+    .btn:active{
+      transform: translateY(0px) scale(.99);
+    }
+    .btn.primary{
+      border-color: rgba(199,255,122,.38);
+      background:
+        linear-gradient(180deg, rgba(199,255,122,.18), rgba(199,255,122,.08));
+      box-shadow: 0 18px 50px rgba(0,0,0,.35), 0 0 0 1px rgba(199,255,122,.06) inset;
+    }
+    .btn.primary:hover{
+      border-color: rgba(199,255,122,.52);
+      box-shadow: 0 22px 60px rgba(0,0,0,.4), 0 0 0 1px rgba(199,255,122,.09) inset;
+    }
+    .btn .dot{
+      width:8px; height:8px; border-radius:99px; background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(199,255,122,.14);
+    }
+
+    main{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 22px 16px 70px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 10px;
+    }
+
+    .heroCard{
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(900px 600px at 20% 30%, rgba(116,211,255,.10), transparent 55%),
+        radial-gradient(700px 520px at 70% 35%, rgba(199,255,122,.10), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding: 22px 20px;
+      min-height: 240px;
+    }
+
+    .heroCard:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 300px at 25% 0%, rgba(199,255,122,.12), transparent 65%),
+                  radial-gradient(600px 300px at 85% 10%, rgba(116,211,255,.10), transparent 62%);
+      filter: blur(2px);
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    .heroCard > *{ position:relative; z-index:1 }
+
+    .kicker{
+      display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
+    .kicker .pill{
+      letter-spacing: .12em;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+    }
+
+    .title{
+      margin: 12px 0 8px;
+      font-family: Fraunces, serif;
+      font-weight: 650;
+      font-size: clamp(28px, 3.3vw, 44px);
+      line-height: 1.03;
+      letter-spacing: -.02em;
+    }
+    .subtitle{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 62ch;
+    }
+
+    .heroMeta{
+      margin-top: 16px;
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .metaItem{
+      display:flex; align-items:center; gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .metaIcon{
+      width: 22px; height: 22px; border-radius: 8px;
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.14);
+      display:grid; place-items:center;
+      color: rgba(255,255,255,.82);
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .sideCard{
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow2);
+      padding: 18px 18px;
+      overflow:hidden;
+      position:relative;
+    }
+    .sideCard h2{
+      font-family: Fraunces, serif;
+      margin: 0 0 8px;
+      letter-spacing: -.01em;
+      font-weight: 650;
+      font-size: 18px;
+    }
+    .sideCard p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .toc{
+      margin-top: 14px;
+      display:grid;
+      gap: 8px;
+    }
+    .toc a{
+      display:flex; align-items:center; justify-content:space-between; gap: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.14);
+      color: rgba(255,255,255,.86);
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+    .toc a:hover{
+      transform: translateY(-1px);
+      border-color: rgba(199,255,122,.28);
+      background: rgba(199,255,122,.08);
+    }
+    .toc span{
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    section.plan{
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+
+    .sectionHead{
+      padding: 18px 18px 12px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 16px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(600px 160px at 12% 0%, rgba(116,211,255,.10), transparent 70%),
+        radial-gradient(550px 160px at 72% 0%, rgba(199,255,122,.10), transparent 70%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    }
+    .sectionHead h3{
+      margin:0;
+      font-family: Fraunces, serif;
+      font-weight: 650;
+      font-size: 18px;
+      letter-spacing: -.01em;
+    }
+    .sectionHead .tagline{
+      margin:0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+      max-width: 48ch;
+      text-align:right;
+    }
+
+    .content{
+      padding: 14px 18px 18px;
+    }
+    .content p{
+      margin: 0 0 10px;
+      color: rgba(255,255,255,.86);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+    .content ul{
+      margin: 8px 0 12px 18px;
+      color: rgba(255,255,255,.86);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+    .content li{ margin: 6px 0; }
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items:start;
+      margin-top: 10px;
+    }
+    .callout{
+      border-radius: 18px;
+      padding: 14px 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+    }
+    .callout h4{
+      margin: 0 0 8px;
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .callout .big{
+      font-family: Fraunces, serif;
+      font-size: 22px;
+      font-weight: 650;
+      margin: 0 0 8px;
+      letter-spacing: -.01em;
+    }
+    .callout p{ margin:0; color: var(--muted); font-size: 13px; }
+
+    /* Table (financials) */
+    .tableWrap{
+      margin-top: 12px;
+      overflow:auto;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.16);
+    }
+    table{
+      width:100%;
+      border-collapse: collapse;
+      min-width: 680px;
+      font-size: 13px;
+    }
+    th, td{
+      padding: 12px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      text-align:right;
+      white-space:nowrap;
+    }
+    th:first-child, td:first-child{ text-align:left; }
+    th{
+      color: rgba(255,255,255,.82);
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: 11px;
+      background: rgba(255,255,255,.04);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    tr:hover td{ background: rgba(255,255,255,.03); }
+
+    .footer{
+      margin-top: 16px;
+      padding: 18px 16px 56px;
+      color: var(--faint);
+      text-align:center;
+      font-size: 12px;
+    }
+    .footer a{
+      color: rgba(199,255,122,.92);
+      border-bottom: 1px solid rgba(199,255,122,.35);
+    }
+
+    /* Reveal animation */
+    .reveal{
+      opacity: 0;
+      transform: translateY(10px);
+      filter: blur(1px);
+    }
+    .reveal.in{
+      animation: rise .7s cubic-bezier(.2,.9,.2,1) forwards;
+    }
+    @keyframes rise{
+      to{ opacity:1; transform: translateY(0); filter: blur(0); }
+    }
+
+    /* Print styles (for “Save as PDF” fallback) */
+    @media print{
+      header, .texture, .footer{ display:none !important; }
+      body{ background:#fff; color:#000; }
+      main{ max-width: 900px; padding: 0; }
+      section.plan, .heroCard, .sideCard{
+        box-shadow:none !important;
+        background:#fff !important;
+        border: 1px solid #ddd !important;
+      }
+      .sectionHead{ background:#fafafa !important; }
+      .content p, .content ul, .tagline, .subtitle, .metaItem, .sideCard p{ color:#111 !important; }
+      .tableWrap{ background:#fff !important; border-color:#ddd !important; }
+      th{ background:#f5f5f5 !important; }
+    }
+
+    @media (max-width: 940px){
+      .hero{ grid-template-columns: 1fr; }
+      .sectionHead{ align-items:flex-start; }
+      .sectionHead .tagline{ text-align:left; }
+      .twoCol{ grid-template-columns: 1fr; }
+      .brand{ min-width: unset; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .btn, .toc a{ transition:none; }
+      .reveal{ opacity:1; transform:none; filter:none; }
+      .reveal.in{ animation:none; }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Box Model</h1>
+  <a class="skip" href="#plan">Skip to business plan</a>
+  <div class="texture" aria-hidden="true"></div>
+
+  <header>
+    <div class="nav">
+      <div class="brand" aria-label="Document header">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
+          <h1>Sample Business Plan</h1>
+          <p>Polished template • Editable • PDF export</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="chip" role="group" aria-label="Company name">
+          <label for="companyName">Company</label>
+          <input id="companyName" type="text" value="Northwind Studio Co." autocomplete="organization" />
+        </div>
+
+        <button class="btn" id="printBtn" type="button" title="Print (or Save as PDF)">
+          <span aria-hidden="true">⎙</span>
+          <span>Print</span>
+        </button>
+
+        <button class="btn primary" id="pdfBtn" type="button" title="Download PDF (client-side)">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Download PDF</span>
+        </button>
+      </div>
     </div>
-    <div class="container">
-        <h1>Box Model</h1>
+  </header>
+
+  <main id="plan" aria-label="Business plan document">
+    <div class="hero">
+      <article class="heroCard reveal" style="animation-delay:.06s">
+        <div class="kicker">
+          <span class="pill">Business Plan</span>
+          <span>2026</span>
+          <span aria-hidden="true">•</span>
+          <span id="dynamicCompanyKicker">Northwind Studio Co.</span>
+        </div>
+        <h2 class="title" id="dynamicCompanyTitle">Northwind Studio Co.</h2>
+        <p class="subtitle">
+          A sample, investor-ready business plan for a boutique design & build studio: positioning, go-to-market, operations,
+          and a simple 3-year financial model. Use as a template—replace assumptions and numbers with your own.
+        </p>
+
+        <div class="heroMeta" aria-label="Plan meta">
+          <div class="metaItem">
+            <div class="metaIcon" aria-hidden="true">↳</div>
+            <div><strong style="color:rgba(255,255,255,.9)">Industry:</strong> Services (Design/Development)</div>
+          </div>
+          <div class="metaItem">
+            <div class="metaIcon" aria-hidden="true">⏱</div>
+            <div><strong style="color:rgba(255,255,255,.9)">Horizon:</strong> 36 months</div>
+          </div>
+          <div class="metaItem">
+            <div class="metaIcon" aria-hidden="true">◎</div>
+            <div><strong style="color:rgba(255,255,255,.9)">Goal:</strong> Profitability + growth</div>
+          </div>
+        </div>
+      </article>
+
+      <aside class="sideCard reveal" style="animation-delay:.12s" aria-label="Table of contents">
+        <h2>Table of Contents</h2>
+        <p>Jump through the plan. The PDF export includes these sections in the same order.</p>
+
+        <nav class="toc" aria-label="On-page navigation">
+          <a href="#exec"><strong>1. Executive Summary</strong><span>Purpose & ask</span></a>
+          <a href="#company"><strong>2. Company Overview</strong><span>Mission & model</span></a>
+          <a href="#market"><strong>3. Market & Customers</strong><span>ICP & demand</span></a>
+          <a href="#offer"><strong>4. Services & Pricing</strong><span>Packages</span></a>
+          <a href="#gtm"><strong>5. Go-to-Market</strong><span>Acquisition</span></a>
+          <a href="#ops"><strong>6. Operations</strong><span>Delivery & tools</span></a>
+          <a href="#team"><strong>7. Team</strong><span>Roles</span></a>
+          <a href="#financials"><strong>8. Financial Plan</strong><span>3-year model</span></a>
+          <a href="#risks"><strong>9. Risks</strong><span>Mitigation</span></a>
+        </nav>
+      </aside>
     </div>
+
+    <div class="grid" id="doc">
+      <section class="plan reveal" id="exec" style="animation-delay:.08s">
+        <div class="sectionHead">
+          <h3>1) Executive Summary</h3>
+          <p class="tagline">A clear narrative: what you do, for whom, why now, and what you’re asking for.</p>
+        </div>
+        <div class="content">
+          <p>
+            <strong id="dynamicCompanyBody1">Northwind Studio Co.</strong> is a boutique product design & build studio helping early-stage teams
+            ship high-quality marketing sites and lightweight web apps in weeks—not quarters. We focus on
+            conversion-driven UX, crisp visual identity, and performant front-end engineering.
+          </p>
+          <p>
+            <strong>Problem:</strong> founders and lean marketing teams struggle to deliver premium web experiences quickly; freelancers are inconsistent,
+            and agencies are expensive and slow.
+          </p>
+          <p>
+            <strong>Solution:</strong> standardized delivery “tracks” (Brand Sprint → Web Launch → Growth Iterations) with transparent pricing and a
+            repeatable process.
+          </p>
+          <div class="twoCol">
+            <div class="callout">
+              <h4>Business Snapshot</h4>
+              <p class="big">Services + Retainers</p>
+              <p>Project fees fund momentum; retainers stabilize cash flow.</p>
+            </div>
+            <div class="callout">
+              <h4>Funding (Sample)</h4>
+              <p class="big">$120k</p>
+              <p>Optional seed to hire 1 engineer + 1 growth lead, extend runway, and increase throughput.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="plan reveal" id="company" style="animation-delay:.12s">
+        <div class="sectionHead">
+          <h3>2) Company Overview</h3>
+          <p class="tagline">Mission, differentiation, and the operating model.</p>
+        </div>
+        <div class="content">
+          <p><strong>Mission:</strong> make world-class web experiences accessible to small teams.</p>
+          <p><strong>Vision:</strong> become the go-to studio for “launch quality” digital products in the $10k–$60k range.</p>
+          <p><strong>Business model:</strong></p>
+          <ul>
+            <li><strong>Fixed-scope packages</strong> for predictable delivery (launches, redesigns, brand refresh).</li>
+            <li><strong>Monthly retainers</strong> for iteration (A/B testing, landing pages, performance, content updates).</li>
+            <li><strong>Partner referrals</strong> with small consultancies and no-code builders (rev-share).</li>
+          </ul>
+          <p>
+            <strong>Competitive advantage:</strong> brand-level aesthetics with engineering-grade execution; small-team speed; documented process; and
+            strong conversion focus (copy + layout + performance).
+          </p>
+        </div>
+      </section>
+
+      <section class="plan reveal" id="market" style="animation-delay:.16s">
+        <div class="sectionHead">
+          <h3>3) Market & Customers</h3>
+          <p class="tagline">Define the ICP and why they buy. Be specific.</p>
+        </div>
+        <div class="content">
+          <p><strong>Ideal customer profile (ICP):</strong></p>
+          <ul>
+            <li>Seed–Series A startups needing a credible web presence and a clear conversion funnel.</li>
+            <li>Professional services firms (legal, accounting, consulting) modernizing brand + lead gen.</li>
+            <li>Creator-led products launching paid offerings.</li>
+          </ul>
+          <p><strong>Customer triggers:</strong> fundraising, product launch, rebrand, poor conversion, slow site performance, inconsistent messaging.</p>
+          <p><strong>Market size (directional):</strong> large and fragmented. The target is not “all businesses,” but teams with budgets for quality and a need for speed.</p>
+        </div>
+      </section>
+
+      <section class="plan reveal" id="offer" style="animation-delay:.20s">
+        <div class="sectionHead">
+          <h3>4) Services & Pricing</h3>
+          <p class="tagline">Packages reduce friction; retainers improve stability.</p>
+        </div>
+        <div class="content">
+          <p><strong>Core packages (sample):</strong></p>
+          <ul>
+            <li><strong>Brand Sprint (1–2 weeks):</strong> positioning, visual direction, landing page wireframes. <em>$6k–$12k</em></li>
+            <li><strong>Web Launch (3–5 weeks):</strong> full marketing site, design system, SEO basics, analytics. <em>$18k–$45k</em></li>
+            <li><strong>Growth Iterations (monthly):</strong> 2–4 experiments, landing pages, content pipeline. <em>$4k–$12k/mo</em></li>
+          </ul>
+          <div class="twoCol">
+            <div class="callout">
+              <h4>Positioning</h4>
+              <p class="big">Premium, not bloated</p>
+              <p>Agency quality with a small, senior team and a repeatable playbook.</p>
+            </div>
+            <div class="callout">
+              <h4>Margins</h4>
+              <p class="big">60–75%</p>
+              <p>High gross margin services; costs scale with headcount and contractors.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="plan reveal" id="gtm" style="animation-delay:.24s">
+        <div class="sectionHead">
+          <h3>5) Go-to-Market (GTM)</h3>
+          <p class="tagline">A few strong channels beat many weak ones.</p>
+        </div>
+        <div class="content">
+          <p><strong>Primary channels:</strong></p>
+          <ul>
+            <li><strong>Content + case studies:</strong> teardown posts, before/after performance metrics, conversion wins.</li>
+            <li><strong>Founder-led outbound:</strong> targeted lists, personalized loom audits, clear offer and CTA.</li>
+            <li><strong>Partnerships:</strong> fractional CMOs, brand strategists, and boutique dev shops.</li>
+          </ul>
+          <p><strong>Sales motion:</strong> 20-minute discovery → paid audit (optional) → scoped proposal → kickoff deposit.</p>
+          <p><strong>KPIs:</strong> lead-to-call rate, call-to-proposal, proposal-to-close, average project value, retainer attach rate, delivery cycle time.</p>
+        </div>
+      </section>
+
+      <section class="plan reveal" id="ops" style="animation-delay:.28s">
+        <div class="sectionHead">
+          <h3>6) Operations</h3>
+          <p class="tagline">How work is delivered, quality is ensured, and scope is controlled.</p>
+        </div>
+        <div class="content">
+          <p><strong>Delivery process (sample):</strong></p>
+          <ul>
+            <li><strong>Week 0:</strong> kickoff, goals, analytics baseline, content inventory</li>
+            <li><strong>Week 1:</strong> sitemap + wireframes + messaging outline</li>
+            <li><strong>Week 2:</strong> visual design + component system</li>
+            <li><strong>Week 3–4:</strong> build, QA, SEO + performance pass</li>
+            <li><strong>Week 5:</strong> launch + post-launch measurement</li>
+          </ul>
+          <p><strong>Tooling:</strong> Figma, linear issue tracking, automated performance checks, accessibility review, and deployment previews.</p>
+          <p><strong>Quality bar:</strong> responsive by default, Lighthouse targets, semantic HTML, accessible components, documented handoff.</p>
+        </div>
+      </section>
+
+      <section class="plan reveal" id="team" style="animation-delay:.32s">
+        <div class="sectionHead">
+          <h3>7) Team</h3>
+          <p class="tagline">Keep it believable: roles, responsibilities, and hiring plan.</p>
+        </div>
+        <div class="content">
+          <p><strong>Founding team (sample):</strong></p>
+          <ul>
+            <li><strong>Creative Director:</strong> brand, UX, visual system, client strategy</li>
+            <li><strong>Lead Engineer:</strong> front-end architecture, performance, implementation</li>
+          </ul>
+          <p><strong>12-month hiring plan (optional):</strong> contract copywriter (month 2), part-time PM (month 4), full-time engineer (month 6–9).</p>
+        </div>
+      </section>
+
+      <section class="plan reveal" id="financials" style="animation-delay:.36s">
+        <div class="sectionHead">
+          <h3>8) Financial Plan (Sample)</h3>
+          <p class="tagline">Simple assumptions. Clear math. Sensitivity-ready.</p>
+        </div>
+        <div class="content">
+          <p>
+            Below is a <strong>sample</strong> model. Replace assumptions (close rate, capacity, pricing, churn) with your real numbers.
+            This example assumes a mix of projects and retainers, with gradual capacity growth.
+          </p>
+
+          <div class="tableWrap" role="region" aria-label="Financial table" tabindex="0">
+            <table aria-describedby="finNote">
+              <thead>
+                <tr>
+                  <th>Line Item</th>
+                  <th>Year 1</th>
+                  <th>Year 2</th>
+                  <th>Year 3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Projects (revenue)</td>
+                  <td>$240,000</td>
+                  <td>$360,000</td>
+                  <td>$480,000</td>
+                </tr>
+                <tr>
+                  <td>Retainers (revenue)</td>
+                  <td>$96,000</td>
+                  <td>$180,000</td>
+                  <td>$288,000</td>
+                </tr>
+                <tr>
+                  <td><strong>Total Revenue</strong></td>
+                  <td><strong>$336,000</strong></td>
+                  <td><strong>$540,000</strong></td>
+                  <td><strong>$768,000</strong></td>
+                </tr>
+                <tr>
+                  <td>COGS (contractors/tools)</td>
+                  <td>$84,000</td>
+                  <td>$135,000</td>
+                  <td>$192,000</td>
+                </tr>
+                <tr>
+                  <td><strong>Gross Profit</strong></td>
+                  <td><strong>$252,000</strong></td>
+                  <td><strong>$405,000</strong></td>
+                  <td><strong>$576,000</strong></td>
+                </tr>
+                <tr>
+                  <td>Operating Expenses</td>
+                  <td>$180,000</td>
+                  <td>$260,000</td>
+                  <td>$360,000</td>
+                </tr>
+                <tr>
+                  <td><strong>Net Income (pre-tax)</strong></td>
+                  <td><strong>$72,000</strong></td>
+                  <td><strong>$145,000</strong></td>
+                  <td><strong>$216,000</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p id="finNote" style="color:var(--muted); font-size:12px; margin-top:10px;">
+            Note: numbers are illustrative only and exclude taxes and owner draws. Use a proper model for fundraising decisions.
+          </p>
+
+          <div class="twoCol">
+            <div class="callout">
+              <h4>Assumptions</h4>
+              <p class="big">2–4 projects/mo</p>
+              <p>Mix of $10k–$45k projects + $4k–$12k/mo retainers.</p>
+            </div>
+            <div class="callout">
+              <h4>Break-even</h4>
+              <p class="big">~$28k/mo</p>
+              <p>Depends on headcount and contractor usage.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="plan reveal" id="risks" style="animation-delay:.40s">
+        <div class="sectionHead">
+          <h3>9) Risks & Mitigation</h3>
+          <p class="tagline">Show you’ve thought through what could break—and how you’ll respond.</p>
+        </div>
+        <div class="content">
+          <ul>
+            <li><strong>Pipeline volatility:</strong> mitigate with retainers, partnerships, and consistent publishing cadence.</li>
+            <li><strong>Scope creep:</strong> mitigate with clear SOWs, change orders, and weekly checkpoints.</li>
+            <li><strong>Delivery bottlenecks:</strong> mitigate with templates, component libraries, and selective subcontracting.</li>
+            <li><strong>Market downturn:</strong> mitigate by targeting recession-resistant verticals and offering smaller “launch” packages.</li>
+          </ul>
+          <p><strong>Appendix idea:</strong> include 1–2 anonymized case studies with metrics (load time, conversion lift, lead quality).</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="footer">
+      Built as a self-contained HTML template. PDF export runs in your browser.
+      If the PDF button fails due to browser restrictions, use <a href="#" id="fallbackPrint">Print</a> and choose “Save as PDF”.
+    </div>
+  </main>
+
+  <!-- PDF Libraries (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
+  <script>
+    const $ = (sel, root=document) => root.querySelector(sel);
+
+    // Update company name across header/hero
+    const companyInput = $("#companyName");
+    const titleEl = $("#dynamicCompanyTitle");
+    const kickerEl = $("#dynamicCompanyKicker");
+    const bodyEl1 = $("#dynamicCompanyBody1");
+
+    function setCompanyName(name){
+      const clean = (name || "").trim() || "Northwind Studio Co.";
+      titleEl.textContent = clean;
+      kickerEl.textContent = clean;
+      bodyEl1.textContent = clean;
+      document.title = `${clean} — Sample Business Plan (PDF)`;
+    }
+
+    companyInput.addEventListener("input", (e) => setCompanyName(e.target.value));
+    setCompanyName(companyInput.value);
+
+    // Reveal on scroll
+    const revealEls = Array.from(document.querySelectorAll(".reveal"));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach((el, idx) => {
+      el.style.animationDelay = `${Math.min(0.06 + idx*0.05, 0.5)}s`;
+      io.observe(el);
+    });
+
+    // Print fallback
+    $("#printBtn").addEventListener("click", () => window.print());
+    $("#fallbackPrint").addEventListener("click", (e) => { e.preventDefault(); window.print(); });
+
+    // PDF Export (client-side): html2canvas -> jsPDF
+    async function downloadPDF(){
+      const btn = $("#pdfBtn");
+      const original = btn.innerHTML;
+      btn.disabled = true;
+      btn.style.opacity = .85;
+      btn.innerHTML = `<span class="dot" aria-hidden="true" style="background: var(--accent2); box-shadow: 0 0 0 4px rgba(116,211,255,.14)"></span><span>Rendering…</span>`;
+
+      // Give UI time to update
+      await new Promise(r => setTimeout(r, 50));
+
+      const docEl = $("#plan");
+      const company = (companyInput.value || "Business Plan").trim() || "Business Plan";
+      const filename = `${company.replace(/[^\w\- ]+/g, "").replace(/\s+/g, " ").trim()} — Business Plan.pdf`;
+
+      try{
+        // Higher scale for sharper text, but keep within memory limits
+        const canvas = await html2canvas(docEl, {
+          scale: Math.min(2, window.devicePixelRatio || 1.5),
+          backgroundColor: "#0c1115",
+          useCORS: true,
+          logging: false,
+          windowWidth: document.documentElement.clientWidth
+        });
+
+        const imgData = canvas.toDataURL("image/png", 1.0);
+
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({ orientation: "p", unit: "pt", format: "a4" });
+
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+
+        // Fit image to A4 width, then paginate by slicing vertically
+        const imgWidth = pageWidth;
+        const imgHeight = canvas.height * (imgWidth / canvas.width);
+
+        let y = 0;
+        let remaining = imgHeight;
+
+        // For slicing we re-use the same image but shift it upwards each page
+        while(remaining > 0){
+          pdf.addImage(imgData, "PNG", 0, y, imgWidth, imgHeight);
+          remaining -= pageHeight;
+          if(remaining > 0){
+            pdf.addPage();
+            y -= pageHeight; // shift image up to show next slice
+          }
+        }
+
+        pdf.save(filename);
+      } catch (err){
+        console.error(err);
+        alert(
+          "PDF export failed in this browser/tab. Use Print → Save as PDF instead.\n\n" +
+          "Tip: Some privacy settings or extensions can block canvas rendering."
+        );
+      } finally{
+        btn.disabled = false;
+        btn.style.opacity = 1;
+        btn.innerHTML = original;
+      }
+    }
+
+    $("#pdfBtn").addEventListener("click", downloadPDF);
+  </script>
 </body>
 </html>
+ 
