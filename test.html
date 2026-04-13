@@ -4,37 +4,343 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sample Business Plan — Generate PDF</title>
-  <meta name="description" content="A polished sample business plan with one-click PDF export (client-side). No external images. Production-grade layout & typography." />
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300,400,600,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+  <title>Ace Technologies — Marketing Plan + Brief Financial Model</title>
   <style>
+    /* Simple document styling for PDF export (no fancy formatting) */
     :root{
-      --bg: #0c1115;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.09);
-      --stroke: rgba(255,255,255,.14);
-      --stroke2: rgba(255,255,255,.2);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.72);
-      --faint: rgba(255,255,255,.56);
-      --accent: #c7ff7a;
-      --accent2: #74d3ff;
-      --danger: #ff5b7a;
-
-      --shadow: 0 24px 70px rgba(0,0,0,.55);
-      --shadow2: 0 10px 30px rgba(0,0,0,.35);
-
-      --r-sm: 14px;
-      --r-md: 18px;
-      --r-lg: 26px;
-
-      --max: 1120px;
+      --text:#111;
+      --muted:#444;
+      --rule:#ddd;
+      --page:#fff;
     }
+    html,body{background:var(--page); color:var(--text); margin:0; padding:0;}
+    body{
+      font-family: Georgia, "Times New Roman", serif;
+      line-height:1.45;
+      font-size: 12pt;
+    }
+    .page{
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+    h1,h2,h3{margin:0 0 10px 0;}
+    h1{font-size: 22pt; margin-top: 8px;}
+    h2{font-size: 15pt; margin-top: 18px;}
+    h3{font-size: 12.5pt; margin-top: 14px;}
+    p{margin: 0 0 10px 0;}
+    ul{margin: 6px 0 12px 22px;}
+    li{margin: 4px 0;}
+    hr{border:0; border-top:1px solid var(--rule); margin: 16px 0;}
+    .muted{color:var(--muted);}
+    table{
+      width:100%;
+      border-collapse: collapse;
+      margin: 8px 0 14px 0;
+      font-size: 11.5pt;
+    }
+    th,td{
+      border:1px solid var(--rule);
+      padding: 8px 10px;
+      vertical-align: top;
+      text-align:left;
+    }
+    th{font-weight:700;}
+    .small{font-size: 11pt;}
+
+    /* Print */
+    @page { size: Letter; margin: 0.8in; }
+    @media print{
+      .page{max-width:none; padding:0;}
+      a{color:inherit; text-decoration:none;}
+      .no-print{display:none !important;}
+      .page-break{break-before: page;}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Ace Technologies — Marketing Plan + Brief Financial Model</h1>
+      <p class="muted small">
+        Prepared for: <strong>Abdallah Abdul</strong><br />
+        Location: <strong>Nairobi, Kenya</strong><br />
+        Export instructions: Open in Chrome → Print → Save as PDF
+      </p>
+      <hr />
+    </header>
+
+    <section>
+      <h2>Marketing Plan</h2>
+
+      <h3>1. Marketing Objectives</h3>
+      <ul>
+        <li>Build brand awareness and credibility for Ace Technologies.</li>
+        <li>Generate consistent leads and convert them into paying clients.</li>
+        <li>Establish a strong online presence to attract local and remote clients.</li>
+        <li>Create repeat business through maintenance retainers and referrals.</li>
+      </ul>
+
+      <h3>2. Target Audience</h3>
+      <ul>
+        <li>Small and medium-sized businesses needing modern websites.</li>
+        <li>Startups and entrepreneurs launching new ventures.</li>
+        <li>Local service providers (restaurants, salons, consultants).</li>
+        <li>Nonprofits and community organizations.</li>
+        <li>E-commerce businesses needing online store setup or improvements.</li>
+      </ul>
+
+      <h3>3. Positioning and Value Proposition</h3>
+      <p><strong>Positioning:</strong> Ace Technologies provides dependable, client-friendly web development with clear communication and practical results.</p>
+      <p><strong>Value proposition:</strong></p>
+      <ul>
+        <li>Personalized service and direct communication.</li>
+        <li>Mobile-responsive, fast, and SEO-ready builds.</li>
+        <li>Transparent quotes and simple packages.</li>
+        <li>Ongoing support and maintenance options.</li>
+      </ul>
+
+      <h3>4. Core Offers (What We Sell)</h3>
+      <ul>
+        <li>Website design and development (custom or CMS).</li>
+        <li>Landing pages for campaigns and lead generation.</li>
+        <li>E-commerce setup and optimization.</li>
+        <li>Website maintenance, updates, backups, and security.</li>
+        <li>Performance improvements (speed, accessibility, SEO basics).</li>
+      </ul>
+
+      <h3>5. Marketing Channels and Tactics</h3>
+
+      <p><strong>A) Website + SEO</strong></p>
+      <ul>
+        <li>Create a simple portfolio website with services, examples, testimonials, and a contact form.</li>
+        <li>Local SEO: Google Business Profile, consistent business info, and local keywords.</li>
+        <li>Publish case studies showing problem → solution → results.</li>
+      </ul>
+
+      <p><strong>B) Content Marketing</strong></p>
+      <ul>
+        <li>Post short, useful articles (1–2/month): website mistakes, speed tips, SEO basics, before/after rebuild stories.</li>
+        <li>Repurpose each article into LinkedIn posts and simple checklists.</li>
+      </ul>
+
+      <p><strong>C) Social Media (Primary: LinkedIn)</strong></p>
+      <ul>
+        <li>Weekly LinkedIn posts showing work, client wins, process, and practical tips.</li>
+        <li>Optional: Instagram for visuals (design snapshots) and short videos.</li>
+      </ul>
+
+      <p><strong>D) Outreach (Direct Lead Generation)</strong></p>
+      <ul>
+        <li>Build a list of businesses with outdated sites.</li>
+        <li>Send short emails offering a quick audit (speed, mobile issues, SEO basics) and a fixed-price improvement plan.</li>
+        <li>Follow up 2 times over 10–14 days.</li>
+      </ul>
+
+      <p><strong>E) Partnerships</strong></p>
+      <ul>
+        <li>Partner with designers, photographers, copywriters, and marketing freelancers for referrals.</li>
+        <li>Offer a simple referral fee or exchange of services.</li>
+      </ul>
+
+      <p><strong>F) Freelance Platforms (Optional)</strong></p>
+      <ul>
+        <li>Use Upwork/Fiverr for early traction and reviews.</li>
+        <li>Focus on a narrow niche offer (example: “speed + redesign for small business sites”).</li>
+      </ul>
+
+      <p><strong>G) Referrals</strong></p>
+      <ul>
+        <li>Ask every satisfied client for a testimonial and 1 referral.</li>
+        <li>Offer a small incentive: discount on next month’s maintenance or a free mini-audit.</li>
+      </ul>
+
+      <h3>6. Simple Monthly Budget (Example)</h3>
+      <table aria-label="Marketing budget">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Monthly Budget (USD)</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Website + domain/tools</td>
+            <td>$30–$80</td>
+            <td>Hosting, domain, basic SEO tool (optional)</td>
+          </tr>
+          <tr>
+            <td>Content creation</td>
+            <td>$0–$150</td>
+            <td>DIY writing/design or outsource occasionally</td>
+          </tr>
+          <tr>
+            <td>Ads (optional)</td>
+            <td>$0–$200</td>
+            <td>Small tests on LinkedIn or Instagram</td>
+          </tr>
+          <tr>
+            <td>Networking</td>
+            <td>$0–$100</td>
+            <td>Local events, meetups, memberships</td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td>$30–$530</td>
+            <td>Keep lean; scale only when ROI is clear</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>7. 90-Day Action Plan</h3>
+      <table aria-label="90-day action plan">
+        <thead>
+          <tr>
+            <th>Timeframe</th>
+            <th>Actions</th>
+            <th>Target Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Weeks 1–2</td>
+            <td>
+              <ul>
+                <li>Launch simple portfolio website.</li>
+                <li>Prepare 2–3 service packages.</li>
+                <li>Create outreach email template and audit checklist.</li>
+              </ul>
+            </td>
+            <td>Ready to sell and respond quickly to leads.</td>
+          </tr>
+          <tr>
+            <td>Weeks 3–6</td>
+            <td>
+              <ul>
+                <li>Send 10–20 outreach emails per week.</li>
+                <li>Post weekly on LinkedIn (tips + proof of work).</li>
+                <li>Deliver 3–5 free mini-audits to warm leads.</li>
+              </ul>
+            </td>
+            <td>First consistent calls and proposals.</td>
+          </tr>
+          <tr>
+            <td>Weeks 7–12</td>
+            <td>
+              <ul>
+                <li>Publish 1 case study.</li>
+                <li>Ask for testimonials and referrals from early clients.</li>
+                <li>Offer maintenance retainers to completed projects.</li>
+              </ul>
+            </td>
+            <td>Repeatable pipeline + recurring revenue.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>8. KPIs (What to Track)</h3>
+      <ul>
+        <li>Leads per week (inquiries + outreach replies).</li>
+        <li>Discovery calls booked per month.</li>
+        <li>Proposal-to-close rate (%).</li>
+        <li>Average project value.</li>
+        <li>Monthly recurring revenue from maintenance retainers.</li>
+        <li>Website traffic and contact form conversions.</li>
+      </ul>
+    </section>
+
+    <section class="page-break">
+      <h2>Brief Financial Model</h2>
+
+      <h3>1. Key Assumptions (Simple)</h3>
+      <ul>
+        <li>Average project price: <strong>$2,000</strong>.</li>
+        <li>Projects per month: start at <strong>1</strong>; increase gradually through the year.</li>
+        <li>Maintenance: <strong>$50/hour</strong>, about <strong>10 hours/month</strong> starting month 3.</li>
+        <li>Retainer: <strong>$500/month</strong> starting month 6.</li>
+        <li>Fixed monthly expenses: about <strong>$300</strong>.</li>
+        <li>Variable expense per project: about <strong>$100</strong>.</li>
+        <li>Estimated tax: <strong>20%</strong> of profit.</li>
+      </ul>
+
+      <h3>2. Year-1 Revenue Plan (High-level)</h3>
+      <table aria-label="Revenue plan summary">
+        <thead>
+          <tr>
+            <th>Period</th>
+            <th>Projects/Month</th>
+            <th>Expected Monthly Revenue (Approx.)</th>
+            <th>What Drives It</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Months 1–2</td>
+            <td>1</td>
+            <td>$2,000</td>
+            <td>Project work only</td>
+          </tr>
+          <tr>
+            <td>Months 3–5</td>
+            <td>2</td>
+            <td>$4,500</td>
+            <td>Projects + maintenance (10 hrs)</td>
+          </tr>
+          <tr>
+            <td>Months 6–8</td>
+            <td>3</td>
+            <td>$7,000</td>
+            <td>Projects + maintenance + 1 retainer</td>
+          </tr>
+          <tr>
+            <td>Months 9–11</td>
+            <td>4</td>
+            <td>$9,000</td>
+            <td>Higher project volume + recurring revenue</td>
+          </tr>
+          <tr>
+            <td>Month 12</td>
+            <td>5</td>
+            <td>$11,000</td>
+            <td>Peak month target</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3. Expense Plan (Simple)</h3>
+      <ul>
+        <li>Fixed costs: ~<strong>$300/month</strong> (internet, subscriptions, marketing basics).</li>
+        <li>Variable costs: ~<strong>$100 per project</strong> (plugins, hosting, tools).</li>
+        <li>One-time startup costs (optional): ~<strong>$3,500</strong> (equipment/software/legal/branding).</li>
+      </ul>
+
+      <h3>4. Profit Summary (Based on Earlier Model)</h3>
+      <ul>
+        <li>Expected net profit after tax grows from about <strong>$1,280</strong> in month 1 to about <strong>$8,160</strong> in month 12.</li>
+        <li>Estimated cumulative net profit after tax in year 1: about <strong>$55,600</strong>.</li>
+      </ul>
+
+      <h3>5. Notes (Practical)</h3>
+      <ul>
+        <li>Keep expenses low early; focus on outreach and referrals for fast ROI.</li>
+        <li>Push maintenance retainers after each project to stabilize cash flow.</li>
+        <li>Track leads, closes, and delivery time to avoid overbooking.</li>
+      </ul>
+
+      <hr />
+      <footer class="muted small">
+        <p>Ace Technologies — Prepared for Abdallah Abdul (Nairobi, Kenya)</p>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    // Intentionally empty for simple PDF export.
+  </script>
+</body>
+</html>
+     }
 
     *{ box-sizing:border-box }
     html,body{ height:100% }
